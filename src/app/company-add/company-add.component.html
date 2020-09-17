@@ -1,0 +1,31 @@
+<div class="card mt-5" style="width: 40%!important; margin: auto;">
+  <div class="card-body">
+      <h3 class="text-center">Register Company</h3>
+      <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+              <label for="companyName">Company Name</label>
+              <input type="text" formControlName="companyName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.companyName.errors }" />
+              <div *ngIf="submitted && f.companyName.errors" class="invalid-feedback">
+                  <div *ngIf="f.companyName.errors.required">Company Name is required</div>
+                  <div *ngIf="f.companyName.errors.minlength">Address must be at least 2 characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+              <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                  <div *ngIf="f.address.errors.required">Address is required</div>
+                  <div *ngIf="f.address.errors.minlength">Address must be at least 5 characters</div>
+              </div>
+          </div>
+          <div class="form-group">
+            <input type="hidden" formControlName="id" />
+              <button type="submit" [disabled]="loading" class="btn btn-primary">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                  Register
+              </button>
+              <a routerLink="/companies" class="btn btn-link">Cancel</a>
+          </div>
+      </form>
+  </div>
+  </div>

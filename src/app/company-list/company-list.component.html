@@ -1,0 +1,59 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <div class="float-left"><h2>Company List</h2></div>
+    <div class="float-right"><button class="btn btn-primary" (click)="addCompany()">Add Company</button></div>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Company Name</th>
+          <th>Address</th>
+          <th>Created On</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companies">
+          <td>{{company.id}}</td>
+          <td>{{company.companyName}}</td>
+          <td>{{company.address}}</td>
+          <td>{{company.createdOnStr}}</td>
+          <td><button (click)="deleteCompany(company.id)" class="btn btn-danger">Delete</button>
+              <button (click)="updateCompany(company.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+              <button (click)="companyDetails(companyDetailsModal, company)" class="btn btn-primary" style="margin-left: 10px">Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #companyDetailsModal let-modal>
+  <div class="modal-header">
+   <h5 class="modal-title" id="editProfileLabel">Company Details</h5>
+   <button type="button" class="close" (click)="modal.dismiss()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+   </button>
+  </div>
+  
+  <div class="modal-body">
+    <div class="form-group row">
+     <label class="col-sm-4 col-form-label"><strong>ID:</strong></label>
+     <div class="col-sm-8">{{selectedCompany.id}}</div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-4 col-form-label"><strong>Name:</strong></label>
+      <div class="col-sm-8">{{selectedCompany.companyName}}</div>
+     </div>
+     <div class="form-group row">
+      <label class="col-sm-4 col-form-label"><strong>Address:</strong></label>
+      <div class="col-sm-8">{{selectedCompany.address}}</div>
+     </div>
+     <div class="form-group row">
+      <label class="col-sm-4 col-form-label"><strong>Date:</strong></label>
+      <div class="col-sm-8">{{selectedCompany.createdOnStr}}</div>
+     </div>
+  </div>
+ </ng-template>

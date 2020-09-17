@@ -1,0 +1,46 @@
+<div class="card mt-5" style="width: 40%!important; margin: auto;">
+<div class="card-body">
+    <h3 class="text-center">Add Payment Method</h3>
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="number">Card Number</label>
+            <input type="number" formControlName="cardNumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardNumber.errors }" />
+            <div *ngIf="submitted && f.cardNumber.errors" class="invalid-feedback">
+                <div *ngIf="f.cardNumber.errors.required">Card Number is required</div>
+                <div *ngIf="f.cardNumber.errors.minlength">Card Number must be at least 12 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="expiryMonth">Expiry Month</label>
+            <input type="number" formControlName="expiryMonth" maxlength="2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.expiryMonth.errors }" />
+            <div *ngIf="submitted && f.expiryMonth.errors" class="invalid-feedback">
+                <div *ngIf="f.expiryMonth.errors.required">Expiry Month is required</div>
+                <div *ngIf="f.expiryMonth.errors.minlength">Expiry Month must be at least 2 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="expiryYear">Expiry Year</label>
+            <input type="number" formControlName="expiryYear" maxlength="2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.expiryYear.errors }" />
+            <div *ngIf="submitted && f.expiryYear.errors" class="invalid-feedback">
+                <div *ngIf="f.expiryYear.errors.required">Expiry Year is required</div>
+                <div *ngIf="f.expiryYear.errors.minlength">Expiry Year must be at least 2 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cvv2">CVV</label>
+            <input type="number" formControlName="cvv2" maxlength="3" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cvv2.errors }" />
+            <div *ngIf="submitted && f.cvv2.errors" class="invalid-feedback">
+                <div *ngIf="f.cvv2.errors.required">CVV is required</div>
+                <div *ngIf="f.cvv2.errors.minlength">CVV must be at least 3 characters</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button [disabled]="loading" class="btn btn-primary">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Save
+            </button>
+            <a routerLink="/" class="btn btn-link">Cancel</a>
+        </div>
+    </form>
+</div>
+</div>
+    
